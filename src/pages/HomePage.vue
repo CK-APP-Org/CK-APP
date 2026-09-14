@@ -137,7 +137,7 @@
 <script>
 import { ref, computed, onMounted } from "vue";
 import store from "../store/index";
-import { getCurrentPeriodName } from "../data/schedules";
+import { getCurrentPeriodName, getWeekParity } from "../data/schedules";
 
 export default {
   data() {
@@ -244,9 +244,23 @@ export default {
         const option = colorOptions.find((opt) => opt.label === label);
         return option ? option.value : "#f4f4f1";
       };
+      // Alternating slots resolve to whichever subject runs this week only --
+      // the home page shows what is on right now, not both options.
+      const resolveSubject = (cell) => {
+        if (cell.alternating) {
+          const { odd, even } = cell.alternating;
+          // Respect a user-edited subject, matching the schedule page.
+          const untouched =
+            !cell.subject || cell.subject === odd || cell.subject === even;
+          const forThisWeek = cell.alternating[getWeekParity(now)];
+          if (untouched && forThisWeek) return forThisWeek;
+        }
+        return cell.subject;
+      };
+
       return currentClassData
         ? {
-            subject: currentPeriod + ": " + currentClassData.subject,
+            subject: currentPeriod + ": " + resolveSubject(currentClassData),
             note: currentClassData.note,
             color: getLabelValue(getFormattedColor(currentClassData.color)),
           }
