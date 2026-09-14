@@ -95,6 +95,8 @@ import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
 import { CLASS_OPTIONS } from "../data/schedules";
+import HomeWidgetSettings from "../components/settings/HomeWidgetSettings.vue";
+import ToolbarCustomiser from "../components/settings/ToolbarCustomiser.vue";
 
 const classOptions = CLASS_OPTIONS;
 
