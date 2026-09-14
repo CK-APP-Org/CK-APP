@@ -195,6 +195,7 @@
 <script>
 import { ref, onMounted, computed } from "vue";
 import axios from "axios";
+import { upstreamUrl, SCHOOL_NEWS_URLS } from "../services/endpoints";
 import { format, register } from "timeago.js";
 import zh_TW from "timeago.js/lib/lang/zh_TW";
 import store from "../store/index";
@@ -272,18 +273,12 @@ export default {
 
     const fetchNews = async () => {
       isLoading.value = true;
-      const originalUrls = [
-        "https://www.ck.tp.edu.tw/nss/main/feeder/5abf2d62aa93092cee58ceb4/KG5mY0d9355?f=normal&%240=hhyrNQJ0110&vector=private&static=false", //重要公告
-        "https://www.ck.tp.edu.tw/nss/main/feeder/5abf2d62aa93092cee58ceb4/IXZld9j7619?f=normal&%240=kpenVCJ9015&vector=private&static=false", //最新消息
-      ];
-
-      const proxiedUrls = originalUrls.map(
-        (url) => `https://corsproxy.io/?url=${encodeURIComponent(url)}`
-      );
 
       try {
         const lastClearedTime = store.getters.getLastClearedTime;
-        const promises = proxiedUrls.map((url) => axios.get(url));
+        const promises = SCHOOL_NEWS_URLS.map((url) =>
+          axios.get(upstreamUrl(url))
+        );
 
         const responses = await Promise.all(promises);
         let allNews = [];

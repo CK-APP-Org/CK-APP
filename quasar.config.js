@@ -117,6 +117,34 @@ module.exports = configure(function (/* ctx */) {
     devServer: {
       // https: true
       open: true, // opens browser window automatically
+
+      // The shipped app talks to these hosts directly through CapacitorHttp,
+      // which performs requests natively and is not subject to CORS. `quasar
+      // dev` runs in a real browser and none of them send
+      // Access-Control-Allow-Origin, so dev traffic is proxied here instead.
+      // See src/services/endpoints.js, which rewrites the URLs in dev only.
+      proxy: {
+        "/upstream/youbike-tpc": {
+          target: "https://tcgbusfs.blob.core.windows.net",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/upstream\/youbike-tpc/, ""),
+        },
+        "/upstream/youbike-ntc": {
+          target: "https://data.ntpc.gov.tw",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/upstream\/youbike-ntc/, ""),
+        },
+        "/upstream/metro": {
+          target: "https://api.metro.taipei",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/upstream\/metro/, ""),
+        },
+        "/upstream/school": {
+          target: "https://www.ck.tp.edu.tw",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/upstream\/school/, ""),
+        },
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
