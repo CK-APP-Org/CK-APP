@@ -22,7 +22,7 @@
       hide-bottom
     >
       <template v-slot:top>
-        <div class="row items-center justify-between q-mb-md">
+        <div class="sch-head">
           <div class="row items-center">
             <q-btn
               flat
@@ -33,7 +33,7 @@
               class="q-mr-sm"
               @click="confirmClassChangeDialog = true"
             />
-            <div class="text-h5 text-bold">{{ userClass }} 課表 &thinsp;</div>
+            <div class="sch-title">{{ userClass }} 課表 &thinsp;</div>
             <q-btn
               round
               size="sm"
@@ -89,6 +89,7 @@
               </q-card>
             </q-dialog>
           </div>
+          <div class="sch-context">{{ semesterLine }}</div>
           <div class="row q-gutter-sm">
             <q-btn
               v-for="day in days"
@@ -103,12 +104,31 @@
           </div>
         </div>
       </template>
+      <template v-slot:body-cell-name="props">
+        <q-td
+          :props="props"
+          class="rail"
+          :class="{
+            'rail--afternoon': isAfternoon(props.row.name),
+            'rail--lunch': props.row.name === '五',
+            'rail--now': isCurrentPeriod(props.row.name),
+          }"
+        >
+          <div v-if="bandLabel(props.row.name)" class="rail-band">
+            {{ bandLabel(props.row.name) }}
+          </div>
+          <div class="rail-main">
+            <span class="rail-num">{{ props.row.name }}</span>
+            <span class="rail-time">{{ periodStart(props.row.name) }}</span>
+          </div>
+        </q-td>
+      </template>
       <template v-slot:body-cell="props">
         <q-td
           :props="props"
           :class="[
             { 'split-cell': props.col.name !== 'name' },
-            { 'thick-border-bottom': props.row.name === '五' },
+            { 'lunch-break': props.row.name === '五' },
             { 'current-class': isCurrentClass(props.row, props.col.name) },
           ]"
         >
@@ -122,7 +142,27 @@
               }"
             >
               <div class="subject-slot">
-                {{ getCellSubject(props.row, props.col.name) }}
+                <div
+                  v-if="getCellAlternating(props.row, props.col.name)"
+                  class="alt-stack"
+                >
+                  <div
+                    v-for="week in ['odd', 'even']"
+                    :key="week"
+                    class="alt-row"
+                    :class="{ 'alt-row--active': weekParity === week }"
+                  >
+                    <span class="alt-tag">{{
+                      week === "odd" ? "單" : "雙"
+                    }}</span>
+                    <span class="alt-subject">{{
+                      getCellAlternating(props.row, props.col.name)[week]
+                    }}</span>
+                  </div>
+                </div>
+                <template v-else>
+                  {{ getCellSubject(props.row, props.col.name) }}
+                </template>
               </div>
               <div class="note-slot">
                 {{ getCellNote(props.row, props.col.name) }}
@@ -215,7 +255,14 @@
 import { onMounted, ref, computed } from "vue";
 import { useQuasar } from "quasar";
 import store from "../store/index";
-import { CLASS_OPTIONS, getCurrentPeriodName } from "../data/schedules";
+import {
+  CLASS_OPTIONS,
+  PERIODS,
+  getCurrentPeriodName,
+  getWeekParity,
+  getWeekNumber,
+  ACADEMIC_YEAR,
+} from "../data/schedules";
 
 const classOptions = CLASS_OPTIONS;
 
@@ -303,9 +350,54 @@ export default {
       loading.value = false;
     });
 
+    const PERIOD_START = PERIODS.reduce((acc, p) => {
+      acc[p.name] = p.time.split("-")[0];
+      return acc;
+    }, {});
+    const periodStart = (name) => PERIOD_START[name] ?? "";
+    // 上午 runs 第一節-第四節, 下午 第五節-第八節, as on the printed timetable.
+    const AFTERNOON = ["五", "六", "七", "八"];
+    const isAfternoon = (name) => AFTERNOON.includes(name);
+    const bandLabel = (name) =>
+      name === "一" ? "上午" : name === "五" ? "下午" : "";
+
+    const currentPeriod = ref(getCurrentPeriodName());
+    const isCurrentPeriod = (name) => currentPeriod.value === name;
+
+    // Which half of the 單/雙 week cycle we are in right now.
+    const weekParity = ref(getWeekParity());
+
+    // e.g. "115學年度第1學期 · 第3週 單週" -- which week matters now that
+    // some slots alternate between 單週 and 雙週.
+    const semesterLine = computed(() => {
+      const week = getWeekNumber();
+      const parity = weekParity.value === "odd" ? "單週" : "雙週";
+      const parts = [ACADEMIC_YEAR, week ? `第${week}週 ${parity}` : parity];
+      return parts.filter(Boolean).join("　");
+    });
+
+    // Returns {odd, even} for an alternating slot, or null. Returns null once
+    // the user has overridden the subject, so their edit is not ignored.
+    const getCellAlternating = (row, colName) => {
+      if (colName === "name") return null;
+      const cell = row[colName];
+      if (!cell || !cell.alternating) return null;
+      const { odd, even } = cell.alternating;
+      if (cell.subject && cell.subject !== odd && cell.subject !== even) {
+        return null;
+      }
+      return cell.alternating;
+    };
+
     const getCellSubject = (row, colName) => {
       if (colName === "name") return row[colName];
-      return row[colName] && row[colName].subject ? row[colName].subject : "";
+      const cell = row[colName];
+      if (!cell) return "";
+      // Alternating-week slots show whichever subject this week runs.
+      if (cell.alternating) {
+        return cell.alternating[getWeekParity()] || cell.subject || "";
+      }
+      return cell.subject || "";
     };
     const getCellColor = (row, colName) => {
       if (colName === "name") return "Default";
@@ -319,7 +411,10 @@ export default {
     };
     const getCellNote = (row, colName) => {
       if (colName === "name") return "";
-      return row[colName] && row[colName].note ? row[colName].note : "";
+      const cell = row[colName];
+      if (!cell) return "";
+      // Alternating slots render both weeks inline, so no note is needed here.
+      return cell.note || "";
     };
     const getLabelValue = (label) => {
       const option = colorOptions.find((opt) => opt.label === label);
@@ -380,6 +475,13 @@ export default {
       visibleColumns,
       columns,
       scheduleData,
+      weekParity,
+      getCellAlternating,
+      semesterLine,
+      periodStart,
+      isAfternoon,
+      bandLabel,
+      isCurrentPeriod,
       userClass,
       colorOptions,
       getCellColor,
@@ -407,124 +509,223 @@ export default {
 </script>
 
 <style>
+/* Structure follows the school's printed 課程表: a left spine carrying the
+   period number and its start time, 上午/下午 bands, and one heavy rule at
+   lunch. Rules separate periods; nothing is boxed for decoration. */
 .my-custom-table {
-  background-color: var(--q-primary-accent);
-  border-radius: 8px;
+  --sch-navy: #12308e;
+  --sch-ink: #1d2028;
+  --sch-quiet: #767b86;
+  --sch-rule: #e0e2e8;
+  --sch-rail: #f5f6f9;
+
+  background-color: #fff;
+  border: 1px solid var(--sch-rule);
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #d0d0d0;
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .my-custom-table .q-table__top {
-  font-size: 1.5em;
-  padding: 16px;
-  background-color: #d9d9d9;
-  color: rgb(0, 0, 0);
-  border-bottom: 1px solid #d0d0d0;
+  display: block;
+  padding: 16px 18px 12px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--sch-rule);
+}
+
+.sch-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--sch-ink);
+}
+
+.sch-head {
+  display: block;
+}
+
+.sch-context {
+  margin-top: 3px;
+  font-size: 0.78rem;
+  color: var(--sch-quiet);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Day switcher sits under the title, scrollable on narrow screens. */
+.my-custom-table .q-table__top .row.q-gutter-sm {
+  justify-content: flex-start;
+  margin-top: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .my-custom-table .q-table thead tr th {
-  font-size: 1.6em;
-  background-color: #d9d9d9;
-  border: 1px solid #d0d0d0;
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sch-quiet);
+  background-color: var(--sch-rail);
+  border: none;
+  border-bottom: 1px solid var(--sch-rule);
 }
 
 .my-custom-table .q-table tbody td {
-  font-size: 1.5em;
   padding: 0;
-  border: 1px solid #d0d0d0;
+  border: none;
+  border-bottom: 1px solid var(--sch-rule);
+  font-size: 1rem;
+  color: var(--sch-ink);
 }
 
-.my-custom-table .q-table tbody td.smaller-column {
-  font-size: 1.5em;
-  width: 20px;
-  color: #353102;
-  background-color: #d9d9d9;
-  font-weight: bolder;
-  padding: 0.2em;
-  text-align: center;
-  border: 1px solid #d0d0d0;
+.my-custom-table .q-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
+/* ---- period rail ---- */
+.my-custom-table .q-table tbody td.rail {
+  width: 1%;
+  white-space: nowrap;
+  padding: 8px 10px;
+  background-color: var(--sch-rail);
+  border-right: 1px solid var(--sch-rule);
+  vertical-align: middle;
+}
+
+.rail-band {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--sch-navy);
+  opacity: 0.75;
+  margin-bottom: 3px;
+}
+
+.rail-main {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rail-num {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sch-ink);
+}
+
+.rail-time {
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--sch-quiet);
+}
+
+/* Lunch: the one heavy rule, as on the paper timetable. */
+.my-custom-table .q-table tbody td.rail--lunch,
+.my-custom-table .q-table tbody td.lunch-break {
+  border-top: 2px solid #c3c7d0;
+}
+
+/* Now: one accent, one job. */
+.my-custom-table .q-table tbody td.rail--now {
+  box-shadow: inset 3px 0 0 var(--sch-navy);
+}
+
+.my-custom-table .q-table tbody td.rail--now .rail-num,
+.my-custom-table .q-table tbody td.rail--now .rail-time {
+  color: var(--sch-navy);
+}
+
+/* ---- subject cells ---- */
 .split-cell {
   padding: 0 !important;
 }
 
 .cell-content {
   display: flex;
-  height: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.subject-slot,
-.note-slot {
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  min-height: 46px;
+  transition: background-color 0.2s ease;
 }
 
 .subject-slot {
-  font-weight: bold;
-  flex: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 5em;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  font-weight: 600;
+  /* Long names like 本土語文/臺灣手語 wrap instead of being clipped. */
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+  text-align: center;
 }
 
 .note-slot {
-  font-size: 0.6em;
-  color: #00000085;
-  flex: 2;
-  border-left: 5px solid rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex: 0 0 30%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  font-size: 0.7rem;
+  color: var(--sch-quiet);
+  border-left: 1px dashed var(--sch-rule);
+  overflow-wrap: anywhere;
 }
 
 .cell-content:hover {
-  filter: brightness(0.9);
+  filter: brightness(0.97);
 }
 
-.q-table__top {
+/* Slots that alternate week to week show both options, current one emphasised. */
+.alt-stack {
+  display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  gap: 3px;
+  width: 100%;
 }
 
-.q-table__top .row.q-gutter-sm {
+.alt-row {
+  display: flex;
+  align-items: baseline;
   justify-content: center;
-  margin-top: 8px;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--sch-quiet);
 }
 
-.my-custom-table .q-table tbody td.thick-border-bottom {
-  position: relative;
+.alt-row--active {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sch-ink);
 }
 
-.my-custom-table .q-table tbody td.thick-border-bottom::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1px;
-  background-color: #d9d9d9;
-  z-index: 1;
+.alt-tag {
+  flex: none;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 0 3px;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  opacity: 0.65;
 }
 
-.current-class {
-  position: relative;
+.alt-row--active .alt-tag {
+  color: var(--sch-navy);
+  opacity: 1;
 }
 
-.current-class::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid #423f40;
-  pointer-events: none;
-  z-index: 2;
+.alt-subject {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The current period's subject cell: quiet tint, the rail carries the accent. */
+.current-class .cell-content {
+  box-shadow: inset 0 0 0 2px rgba(18, 48, 142, 0.18);
 }
 
 .q-item__label.text-italic {
@@ -536,16 +737,43 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
 }
 
 .custom-banner {
-  background-color: #e3f2fd;
-  color: #1976d2;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 0.9em;
+  background-color: #eef1f8;
+  color: #3a4a7c;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
+}
+
+/* Phone is the primary target (the app also ships via Capacitor); widen up. */
+@media (min-width: 600px) {
+  .my-custom-table .q-table tbody td.rail {
+    padding: 10px 14px;
+  }
+  .cell-content {
+    min-height: 52px;
+  }
+  .subject-slot,
+  .note-slot {
+    padding: 9px 12px;
+  }
+  .note-slot {
+    flex: 0 0 26%;
+    font-size: 0.74rem;
+  }
+  .sch-title {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell-content {
+    transition: none;
+  }
 }
 </style>
