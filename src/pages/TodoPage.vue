@@ -55,18 +55,24 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import CalendarView from "../components/todo/CalendarView.vue";
 import TodoListView from "../components/todo/TodoListView.vue";
 import EventDialog from "../components/todo/EventDialog.vue";
 import TodoDialog from "../components/todo/TodoDialog.vue";
-import { SCHOOL_EVENTS } from "../data/calendar";
+import { SCHOOL_EVENTS, loadSchoolEvents } from "../data/calendar";
 
 const store = useStore();
 
-// Term 行事曆 shipped with the app; read-only, see src/data/calendar.
+// Term 行事曆, read-only. Renders from the bundled copy straight away, then
+// takes the Data repo's copy if it is reachable -- the school revises the
+// calendar mid-year. See src/data/calendar.
 const schoolEvents = ref(SCHOOL_EVENTS);
+
+onMounted(async () => {
+  schoolEvents.value = await loadSchoolEvents();
+});
 
 const events = computed(() => store.getters.getEvents);
 const eventCategories = computed(() => store.getters.getEventCategories);

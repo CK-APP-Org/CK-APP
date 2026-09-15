@@ -7,6 +7,7 @@
 // putting every event a day late in Taiwan.
 
 import term1 from "./115-1.json";
+import { fetchData } from "../../services/remoteData";
 
 // CalendarView treats events in this category as read-only.
 export const SCHOOL_EVENT_CATEGORY = { name: "學校事務", color: "#00897B" };
@@ -16,7 +17,7 @@ const endOfDay = (iso) => `${iso}T23:59:59`;
 
 export const CALENDAR_TERM = term1.term;
 
-export const SCHOOL_EVENTS = term1.events.map((event, index) => ({
+const toCalendarEvent = (event, index) => ({
   id: `school-${index}`,
   title: event.title,
   startDate: startOfDay(event.startDate),
@@ -27,6 +28,20 @@ export const SCHOOL_EVENTS = term1.events.map((event, index) => ({
   // Dated only to a 上旬/中旬/下旬, so the span is indicative, not exact.
   approximate: event.approximate,
   category: SCHOOL_EVENT_CATEGORY,
-}));
+});
+
+// Bundled copy, available synchronously so the calendar renders immediately.
+export const SCHOOL_EVENTS = term1.events.map(toCalendarEvent);
+
+// The school reissues the 行事曆 during the year, so prefer the copy in the
+// Data repo when it can be reached.
+export async function loadSchoolEvents() {
+  const data = await fetchData(
+    "calendar/115-1.json",
+    term1,
+    (d) => d && Array.isArray(d.events)
+  );
+  return data.events.map(toCalendarEvent);
+}
 
 export default SCHOOL_EVENTS;
