@@ -1,5 +1,10 @@
 {
   "appId": "org.capacitor.quasar.ckapp",
   "appName": "CK_app",
-  "webDir": "www"
+  "webDir": "www",
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
 }

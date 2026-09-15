@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../store/index";
+import { upstreamUrl, SCHOOL_NEWS_URLS } from "./endpoints";
 
 const FETCH_INTERVAL = 2 * 60 * 1000; // 2 minutes
 
@@ -10,18 +11,11 @@ export default {
   },
 
   async fetchNews() {
-    const originalUrls = [
-      "https://www.ck.tp.edu.tw/nss/main/feeder/5abf2d62aa93092cee58ceb4/KG5mY0d9355?f=normal&%240=hhyrNQJ0110&vector=private&static=false",
-      "https://www.ck.tp.edu.tw/nss/main/feeder/5abf2d62aa93092cee58ceb4/IXZld9j7619?f=normal&%240=kpenVCJ9015&vector=private&static=false",
-    ];
-
-    // Convert URLs to use corsproxy.io
-    const proxiedUrls = originalUrls.map(
-      (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`
-    );
 
     try {
-      const promises = proxiedUrls.map((url) => axios.get(url));
+      const promises = SCHOOL_NEWS_URLS.map((url) =>
+        axios.get(upstreamUrl(url))
+      );
 
       const responses = await Promise.all(promises);
       let allNews = [];

@@ -192,6 +192,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import axios from "axios";
+import { upstreamUrl } from "../../services/endpoints";
 import { useStore } from "vuex";
 import { metroLineColors, stationLines } from "../../data/metroData";
 
@@ -300,7 +301,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
     }
 
     const response = await axios.post(
-      `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+      upstreamUrl(apiUrl),
       xmlData,
       {
         headers: {
@@ -368,7 +369,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 
   try {
     const response = await axios.post(
-      `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+      upstreamUrl(apiUrl),
       xmlData,
       {
         headers: {
@@ -436,7 +437,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 
   try {
     const response = await axios.post(
-      `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+      upstreamUrl(apiUrl),
       xmlData,
       {
         headers: {

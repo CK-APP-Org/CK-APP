@@ -290,6 +290,11 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import axios from "axios";
+import {
+  upstreamUrl,
+  YOUBIKE_TPC_URL,
+  YOUBIKE_NTC_URLS,
+} from "../../services/endpoints";
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
 import {
@@ -409,24 +414,18 @@ const fetchYoubikeData = async () => {
   };
 
   try {
-    // Fetch TPC data using corsproxy.io
+    // Fetch TPC data
     const tpcDataPromise = axios.get(
-      `https://corsproxy.io/?${encodeURIComponent(
-        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-      )}`
+      upstreamUrl(YOUBIKE_TPC_URL)
     );
 
-    // Fetch NTC data in parallel using corsproxy.io
+    // Fetch NTC data in parallel
     const ntcDataPromises = [
       axios.get(
-        `https://corsproxy.io/?${encodeURIComponent(
-          "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=1000"
-        )}`
+        upstreamUrl(YOUBIKE_NTC_URLS[0])
       ),
       axios.get(
-        `https://corsproxy.io/?${encodeURIComponent(
-          "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?page=1&size=1000"
-        )}`
+        upstreamUrl(YOUBIKE_NTC_URLS[1])
       ),
     ];
 
@@ -524,9 +523,7 @@ const addYoubikeStation = async () => {
     try {
       if (city === "臺北市") {
         const response = await axios.get(
-          `https://corsproxy.io/?${encodeURIComponent(
-            "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-          )}`
+          upstreamUrl(YOUBIKE_TPC_URL)
         );
         const data = response.data;
         const stationData = data.find((s) => s.sna === stationName);
@@ -542,14 +539,10 @@ const addYoubikeStation = async () => {
       } else if (city === "新北市") {
         const [response1, response2] = await Promise.all([
           axios.get(
-            `https://corsproxy.io/?${encodeURIComponent(
-              "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=1000"
-            )}`
+            upstreamUrl(YOUBIKE_NTC_URLS[0])
           ),
           axios.get(
-            `https://corsproxy.io/?${encodeURIComponent(
-              "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?page=1&size=1000"
-            )}`
+            upstreamUrl(YOUBIKE_NTC_URLS[1])
           ),
         ]);
 
@@ -594,13 +587,9 @@ const onDistrictChange = async () => {
   if (selectedDistrict.value) {
     let apiUrl;
     if (selectedCity.value["value"] === "臺北市") {
-      apiUrl = `https://corsproxy.io/?${encodeURIComponent(
-        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-      )}`;
+      apiUrl = upstreamUrl(YOUBIKE_TPC_URL);
     } else if (selectedCity.value["value"] === "新北市") {
-      apiUrl = `https://corsproxy.io/?${encodeURIComponent(
-        "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=1000"
-      )}`;
+      apiUrl = upstreamUrl(YOUBIKE_NTC_URLS[0]);
     }
     try {
       let response = await axios.get(apiUrl);
@@ -609,9 +598,7 @@ const onDistrictChange = async () => {
       //Because NTC API has two pages
       if (selectedCity.value["value"] === "新北市") {
         const response2 = await axios.get(
-          `https://corsproxy.io/?${encodeURIComponent(
-            "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?page=1&size=1000"
-          )}`
+          upstreamUrl(YOUBIKE_NTC_URLS[1])
         );
         data = [...data, ...response2.data];
       }
@@ -737,9 +724,7 @@ const handleLocationSelected = async ({ latlng }) => {
 const fetchAllStationsData = async () => {
   try {
     const tpcResponse = await axios.get(
-      `https://corsproxy.io/?${encodeURIComponent(
-        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-      )}`
+      upstreamUrl(YOUBIKE_TPC_URL)
     );
 
     const tpcData = tpcResponse.data.map((station) => ({
@@ -750,15 +735,11 @@ const fetchAllStationsData = async () => {
     }));
 
     const ntcResponse1 = await axios.get(
-      `https://corsproxy.io/?${encodeURIComponent(
-        "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?size=1000"
-      )}`
+      upstreamUrl(YOUBIKE_NTC_URLS[0])
     );
 
     const ntcResponse2 = await axios.get(
-      `https://corsproxy.io/?${encodeURIComponent(
-        "https://data.ntpc.gov.tw/api/datasets/010e5b15-3823-4b20-b401-b1cf000550c5/json?page=1&size=1000"
-      )}`
+      upstreamUrl(YOUBIKE_NTC_URLS[1])
     );
 
     const ntcData = [...ntcResponse1.data, ...ntcResponse2.data].map(
