@@ -98,7 +98,7 @@ import { Icon, Point } from "leaflet";
 import L from "leaflet";
 import { useQuasar } from "quasar";
 import { useStore } from "vuex";
-import restaurantDataLocal from "../data/restaurantData.json";
+import { fetchData } from "../services/remoteData";
 import MapLegend from "../components/food/MapLegend.vue";
 import RestaurantSidebar from "../components/food/RestaurantSidebar.vue";
 import RestaurantList from "../components/food/RestaurantList.vue";
@@ -146,18 +146,8 @@ const fetchRestaurantData = async () => {
     isLoading.value = true;
     error.value = null;
 
-    /*
-    // Fetch from GitHub
-    const githubResponse = await axios.get(
-      "https://raw.githubusercontent.com/CK-APP-Org/Data/main/restaurantData.json"
-    );
-    const githubData = githubResponse.data;
-    */
-
-    // Use local data
-    const localData = restaurantDataLocal;
-
-    restaurantData.value = localData;
+    restaurantData.value =
+      (await fetchData("restaurantData.json", Array.isArray)) ?? [];
   } finally {
     isLoading.value = false;
   }

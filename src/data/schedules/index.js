@@ -1,6 +1,18 @@
-import gaoyi from "./gaoyi_schedules.json";
-import gaoer from "./gaoer_schedules.json";
-import gaosan from "./gaosan_schedules.json";
+// Class schedules come from the Data repo, not from the bundle -- see
+// src/services/remoteData.js for why. loadSchedules() is awaited by the
+// appData boot file, so everything below is populated before the first
+// component mounts and consumers can keep reading these as plain values.
+//
+// These are `let` on purpose: ES module bindings are live, so reassigning them
+// here updates every importer. Do not convert them to `const`.
+
+import { fetchData } from "../../services/remoteData";
+
+const GRADE_FILES = [
+  "schedules/gaoyi_schedules.json",
+  "schedules/gaoer_schedules.json",
+  "schedules/gaosan_schedules.json",
+];
 
 // Chinese numerals used as row labels in the schedule table, one per period.
 const PERIOD_NAMES = ["一", "二", "三", "四", "五", "六", "七", "八"];
@@ -13,16 +25,14 @@ const WEEKDAY_KEYS = {
   friday: "Friday",
 };
 
+const isGradeFile = (d) => d && Array.isArray(d.classes) && Array.isArray(d.periods);
+
 // Period time ranges (identical across all three grades' source files).
-const PERIODS = gaoyi.periods.map((p, index) => ({
-  period: p.period,
-  name: PERIOD_NAMES[index],
-  time: p.time,
-}));
+let PERIODS = [];
 
 // Semester bounds come from the 實施日期 printed on the source timetables.
 // Week 1 of the semester is 單週; parity alternates weekly from there.
-const SEMESTER_START = gaoyi.semester_start ?? null;
+let SEMESTER_START = null;
 
 // Monday-based start of the week containing `date`.
 function startOfWeek(date) {
@@ -55,7 +65,7 @@ function getWeekNumber(date = new Date()) {
   return weeks + 1;
 }
 
-const ACADEMIC_YEAR = gaoyi.academic_year ?? "";
+let ACADEMIC_YEAR = "";
 
 function buildScheduleRows(rawSchedule) {
   return PERIOD_NAMES.map((name, periodIndex) => {
@@ -73,18 +83,48 @@ function buildScheduleRows(rawSchedule) {
   });
 }
 
-const SCHEDULE_DATA = {};
-for (const gradeFile of [gaoyi, gaoer, gaosan]) {
-  for (const classEntry of gradeFile.classes) {
-    SCHEDULE_DATA[classEntry.id] = {
-      schedule: buildScheduleRows(classEntry.schedule),
-    };
-  }
-}
+let SCHEDULE_DATA = {};
+let CLASS_OPTIONS = [];
 
-const CLASS_OPTIONS = Object.keys(SCHEDULE_DATA)
-  .map(Number)
-  .sort((a, b) => a - b);
+/**
+ * Fetch the three grade files and populate this module.
+ *
+ * Awaited by the appData boot file so that it completes before any component
+ * mounts. Returns false if the data could not be obtained at all, which only
+ * happens on a first run with no connectivity.
+ */
+async function loadSchedules() {
+  const files = await Promise.all(
+    GRADE_FILES.map((path) => fetchData(path, isGradeFile))
+  );
+  const grades = files.filter(Boolean);
+  if (!grades.length) return false;
+
+  const data = {};
+  for (const gradeFile of grades) {
+    for (const classEntry of gradeFile.classes) {
+      data[classEntry.id] = {
+        schedule: buildScheduleRows(classEntry.schedule),
+      };
+    }
+  }
+  SCHEDULE_DATA = data;
+  CLASS_OPTIONS = Object.keys(data)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  // All three files carry the same period times and semester bounds.
+  const [first] = grades;
+  PERIODS = first.periods.map((p, index) => ({
+    period: p.period,
+    name: PERIOD_NAMES[index],
+    time: p.time,
+  }));
+  SEMESTER_START = first.semester_start ?? null;
+  ACADEMIC_YEAR = first.academic_year ?? "";
+
+  return grades.length === GRADE_FILES.length;
+}
 
 // Parses "HH:MM-HH:MM" into comparable minute-of-day numbers.
 function parseTimeRange(time) {
@@ -110,6 +150,7 @@ function getCurrentPeriodName(date = new Date()) {
 }
 
 export {
+  loadSchedules,
   SCHEDULE_DATA,
   CLASS_OPTIONS,
   PERIODS,
