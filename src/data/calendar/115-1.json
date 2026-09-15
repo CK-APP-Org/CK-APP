@@ -1,0 +1,1166 @@
+{
+  "term": "115學年度第1學期",
+  "source": "115學年度暑假暨第1學期行事曆(0906).pdf",
+  "events": [
+    {
+      "title": "2026-2027美國AP課程入班鑑定考試(物理力學、微積分BC)",
+      "startDate": "2026-08-25",
+      "endDate": "2026-08-25",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-1資優生縮短修業年限(含免修)考試",
+      "startDate": "2026-08-26",
+      "endDate": "2026-08-27",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "AED安心場所認證暨急救教育訓練(11:00-12:00)",
+      "startDate": "2026-08-28",
+      "endDate": "2026-08-28",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "五項藝術比賽報名(暫)",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "學務處",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "幹部訓練(13:00-13:50)",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "正式上課(14:00)",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "班級充實活動(含領教科書)(9:00-12:00)",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "開學",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "開學典禮(08:10)",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一高二班級電腦領用",
+      "startDate": "2026-08-31",
+      "endDate": "2026-08-31",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二校外自主學習計畫申請",
+      "startDate": "2026-08-31",
+      "endDate": "2026-09-11",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "國際數理奧賽/科展升學優待辦法送件(開學後2個月內)",
+      "startDate": "2026-09-01",
+      "endDate": "2026-10-24",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-1校內獎學金線上申請",
+      "startDate": "2026-09-02",
+      "endDate": "2026-10-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115校內數理及資訊能力競賽",
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-30",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": true
+    },
+    {
+      "title": "高一高二選社結果公告",
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-02",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三第1次學測模擬考",
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-03",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一多元選修線上加退選",
+      "startDate": "2026-09-03",
+      "endDate": "2026-09-07",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一轉社申請",
+      "startDate": "2026-09-04",
+      "endDate": "2026-09-11",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "圖書館社會科藝能科主題書展",
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-18",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一尿液初檢",
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-09",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一學校日(19:00開始)",
+      "startDate": "2026-09-09",
+      "endDate": "2026-09-09",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2026-2027美國AP課程錄取結果公告",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-10",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三多元選修線上加退選",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-14",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二學校日(19:00開始)",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-10",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115臺北市中等學校學生科學研究獎助-決審文件繳交截止(16:00前)",
+      "startDate": "2026-09-11",
+      "endDate": "2026-09-11",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三學校日(19:00開始)",
+      "startDate": "2026-09-11",
+      "endDate": "2026-09-11",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115年度臺北市國語文競賽第一階段複賽(全日)",
+      "startDate": "2026-09-12",
+      "endDate": "2026-09-13",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115年臺北市本土語文競賽",
+      "startDate": "2026-09-13",
+      "endDate": "2026-09-13",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一轉社申請結果及社團名單公告",
+      "startDate": "2026-09-16",
+      "endDate": "2026-09-16",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二高三114-2駝客存摺補登錄驗證",
+      "startDate": "2026-09-16",
+      "endDate": "2026-09-17",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "第25屆高中地理奧林匹亞競賽-個人組決賽",
+      "startDate": "2026-09-19",
+      "endDate": "2026-09-19",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115臺北市本土語文讀者劇場競賽",
+      "startDate": "2026-09-20",
+      "endDate": "2026-09-20",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "校內英文單字比賽(13:10-13:50)",
+      "startDate": "2026-09-21",
+      "endDate": "2026-09-21",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二3對3班際籃球賽開始",
+      "startDate": "2026-09-21",
+      "endDate": "2026-09-21",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "家長代表大會(晚上)",
+      "startDate": "2026-09-23",
+      "endDate": "2026-09-23",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "中秋節",
+      "startDate": "2026-09-25",
+      "endDate": "2026-09-25",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "教師節",
+      "startDate": "2026-09-28",
+      "endDate": "2026-09-28",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "政治大學校系介紹(10:15-12:00)(暫)",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-02",
+      "department": "輔導室",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "賃居生座談會(12:00-13:00)",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-02",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三畢業紀念冊班級團拍(紅樓前)(8:00-12:00)(暫)",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-02",
+      "department": "學務處",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "115年度臺北市國語文競賽第二階段複賽(全日)",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-03",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115臺北市中等學校學生科學研究獎助-決審",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-03",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "第25屆高中地理奧林匹亞競賽-地理專題組、實察繪圖組決賽暨頒獎典禮",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-03",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "心臟病篩檢(13:00-16:00)",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-06",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "日本石川縣立金澤泉丘高校蒞校交流",
+      "startDate": "2026-10-07",
+      "endDate": "2026-10-07",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-1校內獎學金線上申請截止日",
+      "startDate": "2026-10-08",
+      "endDate": "2026-10-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "全國高級中等學校閱讀心得比賽投稿截止(中午12:00截止)",
+      "startDate": "2026-10-08",
+      "endDate": "2026-10-08",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "捐血活動",
+      "startDate": "2026-10-08",
+      "endDate": "2026-10-08",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "國慶日補假",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-09",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "國慶日",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺北市學生音樂比賽(團體)",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-27",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一、高二、高三第1次定期考(◆考後大掃除)",
+      "startDate": "2026-10-13",
+      "endDate": "2026-10-14",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺北市學生音樂比賽(個人)",
+      "startDate": "2026-10-14",
+      "endDate": "2026-11-03",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "全國高級中等學校小論文寫作比賽投稿截止(中午12:00截止)",
+      "startDate": "2026-10-15",
+      "endDate": "2026-10-15",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三大學多元入學說明會(10:10學生及導師、18:30家長)",
+      "startDate": "2026-10-16",
+      "endDate": "2026-10-16",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "大考中心第一次英語聽力測驗",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一大隊接力預賽開始(12:10-13:00)",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-23",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一健康檢查",
+      "startDate": "2026-10-20",
+      "endDate": "2026-10-22",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2027臺灣國際科展報名(暫)",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-31",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": true
+    },
+    {
+      "title": "美國AP考試報名",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-31",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": true
+    },
+    {
+      "title": "成功大學校系介紹(10:15-12:00)(暫)",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-23",
+      "department": "輔導室",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "韓國釜山第一科學高中蒞校交流",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-23",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一X光篩檢(13:00-16:00)",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-23",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺灣光復節",
+      "startDate": "2026-10-25",
+      "endDate": "2026-10-25",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺灣光復節補假",
+      "startDate": "2026-10-26",
+      "endDate": "2026-10-26",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二大隊接力預賽開始(12:10-13:00)",
+      "startDate": "2026-10-27",
+      "endDate": "2026-10-30",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三第2次學測模擬考",
+      "startDate": "2026-10-28",
+      "endDate": "2026-10-29",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "清華大學校系介紹(10:15-12:00)(暫)",
+      "startDate": "2026-10-30",
+      "endDate": "2026-10-30",
+      "department": "輔導室",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "英文作文比賽區域決賽(10:00)",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115臺北市資訊學科能力競賽(暫)",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-10",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": true
+    },
+    {
+      "title": "田徑各單項決賽開始(12:10-13:00)",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-06",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "科學館封館",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "全校師生流感疫苗接種",
+      "startDate": "2026-11-03",
+      "endDate": "2026-11-03",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺北國際青年科學論壇",
+      "startDate": "2026-11-05",
+      "endDate": "2026-11-08",
+      "department": "人事室",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2025諾貝爾化學獎得主日本京都大學北川進教授蒞校分享",
+      "startDate": "2026-11-06",
+      "endDate": "2026-11-06",
+      "department": "人事室",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "陽明交通大學校系介紹(10:15-12:00)(暫)",
+      "startDate": "2026-11-06",
+      "endDate": "2026-11-06",
+      "department": "輔導室",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "2026第七屆臺灣科學節(11/7-8、14-15，共4天)",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-08",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "物理奧林匹亞競賽初賽(下午)",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-07",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "生物奧林匹亞競賽初賽(上午)",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-07",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "英文單字比賽區域決賽(10:00)",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-07",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高壓電檢測及保養",
+      "startDate": "2026-11-07",
+      "endDate": "2026-11-07",
+      "department": "總務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115臺北市數學及自然學科能力競賽",
+      "startDate": "2026-11-08",
+      "endDate": "2026-11-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "捷克布拉格小城文理中學、布爾諾文理中學蒞校交流",
+      "startDate": "2026-11-09",
+      "endDate": "2026-11-09",
+      "department": "人事室",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "日本山形縣立致道館高校蒞校交流(8:30-12:00)",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-10",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2026第七屆臺灣科學節(11/7-8、14-15，共4天)",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-15",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "化學奧林匹亞競賽初賽(下午)",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-14",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "數學奧林匹亞競賽初賽(上午)",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-14",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "英文演講比賽區域決賽(09:00-13:30)",
+      "startDate": "2026-11-15",
+      "endDate": "2026-11-15",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三第2次定期考(◆考後大掃除)",
+      "startDate": "2026-11-18",
+      "endDate": "2026-11-19",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺北市115年度中華民國高中學生新加坡訪問團接待",
+      "startDate": "2026-11-19",
+      "endDate": "2026-11-28",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "建橄校友龍虎豹獅對抗賽",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "地方公職人員選舉",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-28",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115全國數理及資訊學科能力競賽(暫)",
+      "startDate": "2026-12-01",
+      "endDate": "2026-12-10",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": true
+    },
+    {
+      "title": "高一、高二第2次定期考(◆考後大掃除)",
+      "startDate": "2026-12-01",
+      "endDate": "2026-12-02",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "創社及社團異動申請開始",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-03",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二高三轉班群申請",
+      "startDate": "2026-12-03",
+      "endDate": "2026-12-18",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三作文抽查",
+      "startDate": "2026-12-04",
+      "endDate": "2026-12-04",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "128週年校慶",
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-05",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "校慶補假",
+      "startDate": "2026-12-07",
+      "endDate": "2026-12-07",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三第3次學測模擬考",
+      "startDate": "2026-12-08",
+      "endDate": "2026-12-09",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "日本愛媛縣立松山南高校蒞校交流",
+      "startDate": "2026-12-10",
+      "endDate": "2026-12-10",
+      "department": "人事室",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "大考中心第二次英語聽力測驗",
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-12",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115全國語文競賽-國/台/客/原民語個人賽",
+      "startDate": "2026-12-13",
+      "endDate": "2026-12-13",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "校慶舞會",
+      "startDate": "2026-12-13",
+      "endDate": "2026-12-13",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115校內科展-報名並繳交作品說明書截止日(13:00止)",
+      "startDate": "2026-12-17",
+      "endDate": "2026-12-17",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "創社及社團異動申請截止",
+      "startDate": "2026-12-17",
+      "endDate": "2026-12-17",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一高二作文抽查",
+      "startDate": "2026-12-18",
+      "endDate": "2026-12-18",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二合唱比賽",
+      "startDate": "2026-12-18",
+      "endDate": "2026-12-18",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二高三轉班群申請截止",
+      "startDate": "2026-12-18",
+      "endDate": "2026-12-18",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115全國語文競賽-本土語文讀者劇場團體賽",
+      "startDate": "2026-12-20",
+      "endDate": "2026-12-20",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "日本福島縣立會津學鳳高校蒞校交流",
+      "startDate": "2026-12-24",
+      "endDate": "2026-12-24",
+      "department": "人事室",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "行憲紀念日",
+      "startDate": "2026-12-25",
+      "endDate": "2026-12-25",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一高二期末駝客存摺驗證登錄",
+      "startDate": "2026-12-29",
+      "endDate": "2026-12-30",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三第3次定期考(◆考後大掃除)",
+      "startDate": "2026-12-30",
+      "endDate": "2026-12-31",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115校內科展-繳交作品海報截止日(13:00止)",
+      "startDate": "2026-12-31",
+      "endDate": "2026-12-31",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "刪除112學年度入學之畢業生校園Google帳號",
+      "startDate": "2026-12-31",
+      "endDate": "2026-12-31",
+      "department": "圖書館",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一線上選社",
+      "startDate": "2026-12-31",
+      "endDate": "2027-01-08",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-2臺大高中生進階課程報名",
+      "startDate": "2027-01-01",
+      "endDate": "2027-01-10",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": true
+    },
+    {
+      "title": "元旦",
+      "startDate": "2027-01-01",
+      "endDate": "2027-01-01",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "新加坡國際青年科學論壇",
+      "startDate": "2027-01-04",
+      "endDate": "2027-01-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115校內科展決審",
+      "startDate": "2027-01-05",
+      "endDate": "2027-01-06",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115校內科展得獎名單公告",
+      "startDate": "2027-01-08",
+      "endDate": "2027-01-08",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-2資優生縮短修業年限(含免修)報名(線上)",
+      "startDate": "2027-01-11",
+      "endDate": "2027-01-28",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "科學班招生簡章公告",
+      "startDate": "2027-01-15",
+      "endDate": "2027-01-15",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一、高二第3次定期考(◆考後大掃除)",
+      "startDate": "2027-01-18",
+      "endDate": "2027-01-20",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "休業式",
+      "startDate": "2027-01-20",
+      "endDate": "2027-01-20",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2027亞太數學奧林匹亞競賽初選-第二階段(暫)",
+      "startDate": "2027-01-21",
+      "endDate": "2027-01-31",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": true
+    },
+    {
+      "title": "大學學科能力測驗開放考生試場查看(14:00-16:00)",
+      "startDate": "2027-01-21",
+      "endDate": "2027-01-21",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "寒假開始",
+      "startDate": "2027-01-21",
+      "endDate": "2027-01-21",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "116學年度大學學科能力測驗",
+      "startDate": "2027-01-22",
+      "endDate": "2027-01-24",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "學期成績繳交截止日",
+      "startDate": "2027-01-22",
+      "endDate": "2027-01-22",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2027生物奧林匹亞競賽複賽(暫)",
+      "startDate": "2027-01-23",
+      "endDate": "2027-01-24",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "臺灣國際科展(暫)",
+      "startDate": "2027-01-25",
+      "endDate": "2027-01-30",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "補考名單公告",
+      "startDate": "2027-01-25",
+      "endDate": "2027-01-25",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高一補考",
+      "startDate": "2027-01-27",
+      "endDate": "2027-01-27",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "115-2資優生縮短修業年限(含免修)報名截止(線上)(中午12:00截止)",
+      "startDate": "2027-01-28",
+      "endDate": "2027-01-28",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高二補考",
+      "startDate": "2027-01-28",
+      "endDate": "2027-01-28",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "高三補考",
+      "startDate": "2027-01-29",
+      "endDate": "2027-01-29",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2027物理奧林匹亞競賽複選(13:30-16:30)",
+      "startDate": "2027-01-30",
+      "endDate": "2027-01-30",
+      "department": "教務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "2027青少年科學人才培育計畫申請(暫)",
+      "startDate": "2027-02-01",
+      "endDate": "2027-03-10",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": true
+    },
+    {
+      "title": "春節連假",
+      "startDate": "2027-02-04",
+      "endDate": "2027-02-10",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺灣數學奧林匹亞競賽(暫)",
+      "startDate": "2027-02-04",
+      "endDate": "2027-02-04",
+      "department": "教務處",
+      "tentative": true,
+      "approximate": false
+    },
+    {
+      "title": "始業式(08:10)",
+      "startDate": "2027-02-11",
+      "endDate": "2027-02-11",
+      "department": "學務處",
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "開學",
+      "startDate": "2027-02-11",
+      "endDate": "2027-02-11",
+      "department": null,
+      "tentative": false,
+      "approximate": false
+    },
+    {
+      "title": "臺大校系介紹(9:00-12:00)",
+      "startDate": "2027-02-20",
+      "endDate": "2027-02-20",
+      "department": "輔導室",
+      "tentative": false,
+      "approximate": false
+    }
+  ]
+}

@@ -61,10 +61,12 @@ import CalendarView from "../components/todo/CalendarView.vue";
 import TodoListView from "../components/todo/TodoListView.vue";
 import EventDialog from "../components/todo/EventDialog.vue";
 import TodoDialog from "../components/todo/TodoDialog.vue";
+import { SCHOOL_EVENTS } from "../data/calendar";
 
 const store = useStore();
 
-const schoolEvents = ref([]);
+// Term 行事曆 shipped with the app; read-only, see src/data/calendar.
+const schoolEvents = ref(SCHOOL_EVENTS);
 
 const events = computed(() => store.getters.getEvents);
 const eventCategories = computed(() => store.getters.getEventCategories);
