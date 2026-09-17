@@ -4,19 +4,14 @@
       <div class="column items-center">
         <q-img src="promo/promologo.png" alt="logo" fit="contain" style="max-width: 300px;"/>
         <div class="text-h4 text-center q-mt-md">
-          <span v-if="$q.screen.gt.xs" class="q-pl-sm">
-            <strong>建北中成四校聯合特約商店</strong>
-          </span>
-          <span v-else>
-            <strong>四校特約商店</strong>
-          </span>
+          <strong>建北特約</strong>
           <br />
           <br />
         </div>
         <div class="text-center q-mb-md">
-          <div style="font-size: larger; font-weight: bold;">特約商店使用準則</div>
+          <div style="font-size: larger; font-weight: bold;">建北特約使用準則</div>
         </div>
-        <span>1. 特約店家將於店家明顯處，張貼四校特約專用貼紙，以供辨識。</span>
+        <span>1. 特約店家將於店家明顯處，張貼建北特約專用貼紙，以供辨識。</span>
         <span>2. 使用特約時，請記得出示學生證或教師證，店家得以拒絕僅穿著制服者。</span>
       </div>
     </q-card>
@@ -42,15 +37,13 @@ export default {
     return {
       search: "",
       items: [
-        { name: "官方網站", icon: "store", link: "https://promo.cksc.tw" },
-        { name: "建中地區", icon: "school", link: "https://promo.cksc.tw/ckhs" },
-        { name: "中山地區", icon: "library_books", link: "https://promo.cksc.tw/zsgh" },
-        { name: "成功地區", icon: "local_library", link: "https://promo.cksc.tw/cghs" },
-        { name: "北車地區", icon: "train", link: "https://promo.cksc.tw/taipeimainstation" },
-        { name: "西門地區", icon: "store", link: "https://promo.cksc.tw/ximen" },
-        { name: "公館地區", icon: "local_mall", link: "https://promo.cksc.tw/gongguan" },
-        { name: "古亭地區", icon: "shop", link: "https://promo.cksc.tw/guting" },
-        { name: "其他地區", icon: "other_houses", link: "https://promo.cksc.tw/other" },
+        { name: "官方網站", icon: "store", link: "https://cktfgpromo.cksc.tw" },
+        { name: "建中地區", icon: "school", link: "https://cktfgpromo.cksc.tw/ckhs" },
+        { name: "北車地區", icon: "train", link: "https://cktfgpromo.cksc.tw/taipeimainstation" },
+        { name: "西門地區", icon: "store", link: "https://cktfgpromo.cksc.tw/ximen" },
+        { name: "公館地區", icon: "local_mall", link: "https://cktfgpromo.cksc.tw/gongguan" },
+        { name: "古亭地區", icon: "shop", link: "https://cktfgpromo.cksc.tw/guting" },
+        { name: "其他地區", icon: "other_houses", link: "https://cktfgpromo.cksc.tw/other" },
       ],
     };
   },
