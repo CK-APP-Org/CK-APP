@@ -109,7 +109,7 @@ YouBike部分，我們分別讀取[台北市](https://tcgbusfs.blob.core.windows
 前面提過，newsService.js每隔兩分鐘會在背景自動抓校網資料。
 
 ### PromoPage (建北特約)
-「建北特約」目錄頁。內含特約使用準則，並以分區按鈕（建中、北車、西門、公館、古亭、其他）連結到外部網站 [`cktfgpromo.cksc.tw`](https://cktfgpromo.cksc.tw)。
+「建北特約」目錄頁。內含特約使用準則，並以分區按鈕（建中、北車、西門、其他）連結到外部網站 [`cktfgpromo.cksc.tw`](https://cktfgpromo.cksc.tw)。
 
 ### SouvenirPage (紀念品)
 以 iframe 內嵌外部紀念品商店 [`souvenir.cksc.tw/auth`](https://souvenir.cksc.tw/auth)，本身幾乎沒有自己的邏輯，主要當作 App 內的入口。

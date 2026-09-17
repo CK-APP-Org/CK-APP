@@ -41,8 +41,6 @@ export default {
         { name: "建中地區", icon: "school", link: "https://cktfgpromo.cksc.tw/ckhs" },
         { name: "北車地區", icon: "train", link: "https://cktfgpromo.cksc.tw/taipeimainstation" },
         { name: "西門地區", icon: "store", link: "https://cktfgpromo.cksc.tw/ximen" },
-        { name: "公館地區", icon: "local_mall", link: "https://cktfgpromo.cksc.tw/gongguan" },
-        { name: "古亭地區", icon: "shop", link: "https://cktfgpromo.cksc.tw/guting" },
         { name: "其他地區", icon: "other_houses", link: "https://cktfgpromo.cksc.tw/other" },
       ],
     };
