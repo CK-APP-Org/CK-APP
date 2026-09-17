@@ -1,3 +1,4 @@
+# Legacy manual tool. The maintained version runs as a GitHub Action in the Data repo (scripts/).
 import pandas as pd
 import openpyxl
 from datetime import datetime

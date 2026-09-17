@@ -144,7 +144,7 @@ export default {
     return {
       search: "",
       items: [
-        { name: "特約商店", icon: "store", link: "/promo" },
+        { name: "建北特約", icon: "store", link: "/promo" },
         { name: "校慶紀念品", icon: "shopping_bag", link: "/souvenir" },
         { name: "行事曆", icon: "calendar_month", link: "/todo" },
         { name: "交通", icon: "directions_walk", link: "/transport" },

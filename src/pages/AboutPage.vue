@@ -203,9 +203,9 @@ export default {
       {
         name: "Promo",
         icon: "store",
-        title: "特約商店，節省荷包",
+        title: "建北特約，節省荷包",
         description:
-          "查詢特約商店相關資訊，為自己節省荷包",
+          "查詢建北特約相關資訊，為自己節省荷包",
       },
       {
         name: "Souvenir",

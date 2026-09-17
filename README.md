@@ -55,8 +55,7 @@ CK_app為CK APP的主體程式，語言是Quasar Framework，本質上為HTML、
 		- xmlUtils.js: 解析校網 XML 的工具
 - **tools**（位於 repo 根目錄，與 `src/` 同層，非 Vite 專案的一部分）
 	- Convert_xlsx_to_json.py: 把教務處課表檔(.xls)轉成json，使用說明在檔案裡（⚠️ 輸出格式目前跟 `src/data/schedules/` 用的格式不一致，見[已知問題](#已知問題與待辦)）
-	- menu_scraper.py: (見 MenuPage 說明)
-	- menu_visualizer.py: 將熱食部菜單自動轉成圖檔
+	- menu_scraper.py / menu_visualizer.py: 舊版手動菜單轉圖工具，現已由 Data repo 的 Action 取代（見 MenuPage 說明）
 
 除了GitHub外，我們也有[官方網站](https://ckapp-tw.web.app/) (由 78屆的Ian Wen開發管理)、官方gmail(ckappofficial@gmail.com)和[官方IG帳號](https://www.instagram.com/ckappofficial/)。（過去也曾用Firebase儲存登入使用者的資料，但登入功能與Firebase已完全移除，見[已知問題與待辦](#已知問題與待辦)。）
 
@@ -89,9 +88,17 @@ YouBike部分，我們分別讀取[台北市](https://tcgbusfs.blob.core.windows
 但我們沒有鳥他就是了。
 
 ### MenuPage (熱食部)
-熱食部通常會在月底把下個月的菜單放到[雲端](https://drive.google.com/drive/folders/1jZTQNkQVCoDVmMPQaG2Ov_Zwu4o4cmQQ)。因此我們在每個月底需要把雲端的xlsx檔下載(共4個，每週各一個檔案)。接下來，打開一個資料夾放入menu_scraper和menu_visualizer。接著，依序將菜單的檔案改名為menu.xlsx放入該資料夾中，並執行menu_visualizer。此時應該會出現一個資料夾(menu_visualizations)，裡面會有轉換過的每日菜單png檔。最後，將這些圖片放入Data repo的menus資料夾中並上傳，CK APP就讀得到了。
+熱食部通常會在月底把下個月的菜單放到[雲端](https://drive.google.com/drive/folders/1jZTQNkQVCoDVmMPQaG2Ov_Zwu4o4cmQQ)（依學期分資料夾，例如 `115-1`，每週一個 xlsx 檔）。
 
-圖片檔名說明：菜單的圖片的檔名命名準則為當週週一之日期以及星期幾。例如2025/9/11為該週之星期四，該週週一為9/8，故9/11的菜單檔名為```2025-09-08_4.png```。然而因為程式有bug，所以目前上架版本中，有時候MenuPage會把週一的日期往前算一天。但我們有用menu_visualizer迴避這個問題，以9/11的例子，menu_visualizer其實同時會輸出```2025-09-07_4.png```。
+**菜單現在由 Data repo 的 GitHub Action 自動更新**（`.github/workflows/update-menu.yml`）：每天台灣時間 02:00，Action 會透過 Google Drive API 讀取最新兩個學期資料夾內的 xlsx，用 `scripts/` 裡的 scraper/visualizer 產生本週及之後的每日菜單 png，有變更才 commit 到 `menus/`。平日若本週菜單仍缺檔，workflow 會失敗並寄信通知。
+- 需要的設定：在 GCP 啟用 Google Drive API 並建立 API key，存成 Data repo 的 secret `GOOGLE_DRIVE_API_KEY`。
+- 想立刻更新：到 Data repo 的 Actions → Update cafeteria menu → Run workflow。
+- 本機手動執行：`pip install -r scripts/requirements.txt` 後 `GOOGLE_DRIVE_API_KEY=... python scripts/update_menu.py`（可加 `--dry-run` 只解析不輸出）。
+- xlsx 的日期是從表格裡的「週一日期」讀取，不看檔名，所以檔名亂取也沒關係。
+
+`tools/` 裡的 `menu_scraper.py`、`menu_visualizer.py` 是舊版手動流程，正式版本在 Data repo 的 `scripts/`。
+
+圖片檔名說明：菜單的圖片的檔名命名準則為當週週一之日期以及星期幾。例如2025/9/11為該週之星期四，該週週一為9/8，故9/11的菜單檔名為```2025-09-08_4.png```。然而因為程式有bug，所以目前上架版本中，有時候MenuPage會把週一的日期往前算一天（`toISOString()` 轉成 UTC，台灣時間 08:00 前會變成前一天）。所以 visualizer 同時會輸出一份週日日期的檔名，以9/11的例子就是```2025-09-07_4.png```。
 
 ### FoodPage (美食)
 我們的地圖是用leaflet插件，餐廳資料來源是restaurantData.json。有些店家的營業時間會顯示超過24點，那是因為我們為了讓圖標顏色顯示正常(否則23:30後圖標會變淺綠色，因為程式會以為24點就要關門了，但實際上店家營業時間可能到凌晨2點)。以後可以修正。\
@@ -101,8 +108,8 @@ YouBike部分，我們分別讀取[台北市](https://tcgbusfs.blob.core.windows
 校網頁面的資料來源是[建中校網](https://www.ck.tp.edu.tw/nss/p/index)重要公告和最新消息的欄位中長得像Wi-Fi符號的按鈕，點下去會有XML檔可以讀。\
 前面提過，newsService.js每隔兩分鐘會在背景自動抓校網資料。
 
-### PromoPage (特約商店)
-「建北中成四校聯合特約商店」目錄頁。內含特約使用準則，並以分區按鈕（建中、中山、成功、北車、西門、公館、古亭等）連結到外部網站 [`promo.cksc.tw`](https://promo.cksc.tw)。
+### PromoPage (建北特約)
+「建北特約」目錄頁。內含特約使用準則，並以分區按鈕（建中、北車、西門、公館、古亭、其他）連結到外部網站 [`cktfgpromo.cksc.tw`](https://cktfgpromo.cksc.tw)。
 
 ### SouvenirPage (紀念品)
 以 iframe 內嵌外部紀念品商店 [`souvenir.cksc.tw/auth`](https://souvenir.cksc.tw/auth)，本身幾乎沒有自己的邏輯，主要當作 App 內的入口。
